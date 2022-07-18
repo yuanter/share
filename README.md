@@ -1,5 +1,4 @@
-# share
-一些共享资源
+# share一些共享资源
 
 
 ## Tik Tok教程
