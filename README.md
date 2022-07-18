@@ -17,7 +17,7 @@
 ### 操作步骤：
 * 0.商店需要登陆id：找本人要账号密码，愉快~
 * 1.安装美区商店软件 Shadowrocket（必须）；可以私信本人租用成品苹果id账号（软件下载后永久使用）
-* 2.下载“[tiktok21.1.0.ipa](https://github.com/yuanter/share/raw/main/TikTok%2021.1.0%EF%BC%88%E9%99%A2%E9%95%BF%E8%B4%A6%E5%8F%B7%E7%89%88%EF%BC%89.ipa "tiktok21.1.0.ipa")”和“[爱思助手](https://github.com/yuanter/share/raw/main/%E7%88%B1%E6%80%9D%E5%8A%A9%E6%89%8B.exe "爱思助手")”到桌面
+* 2.下载“[tiktok21.1.0.ipa](https://ghproxy.com/https://github.com/yuanter/share/raw/main/TikTok%2021.1.0%EF%BC%88%E9%99%A2%E9%95%BF%E8%B4%A6%E5%8F%B7%E7%89%88%EF%BC%89.ipa "tiktok21.1.0.ipa")”和“[爱思助手](https://ghproxy.com/https://github.com/yuanter/share/raw/main/%E7%88%B1%E6%80%9D%E5%8A%A9%E6%89%8B.exe "爱思助手")”到桌面
 * 3.电脑安装爱思助手
 * 4.复制链接https://ghproxy.com/https://raw.githubusercontent.com/yuanter/share/main/%E7%BE%8E%E5%8C%BA%E6%8A%96%E9%9F%B321.1.0%E5%85%8D%E6%8B%94%E5%8D%A1%E9%85%8D%E7%BD%AE.conf
 * 5.打开Shadowrocket，点开最下面的配置 – 点右上角+号 – 粘贴链接 – 点下载 – 找到下面的远程文件点击一下 – 点击使用配置
