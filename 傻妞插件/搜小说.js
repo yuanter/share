@@ -1,9 +1,8 @@
-// 作者QQ1483081359
 // [rule: 小说 ]
 
 function main() {
-sendText("请在15内输入小说名字或关键词：")
-    var name = input(15000)
+sendText("请在60内输入小说名字或关键词：")
+    var name = input(60000)
     if (name == "") {
         return sendText("操作超时，已退出会话。")
     }
@@ -19,7 +18,7 @@ sendText("请在15内输入小说名字或关键词：")
 }
 else
     sendText("请输入需要查找的小说序号：\n\n"+content)
-    var num = input(15000)
+    var num = input(60000)
     if (num == "") {
         return sendText("操作超时，已退出会话。")
     }
