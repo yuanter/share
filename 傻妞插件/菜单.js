@@ -10,6 +10,7 @@ function main() {
 	menu.push({ "热搜": "热搜" });
 	menu.push({ "小说": "小说" });
     menu.push({ "小姐姐": "小姐姐" });
+	menu.push({ "塔罗牌": "塔罗" });
 	menu.push({ "壁纸": "二次元" });
 	menu.push({ "菜谱": "菜谱 麻辣清江鱼" });
 	menu.push({ "买家秀": "买家秀" });
@@ -18,6 +19,7 @@ function main() {
 	menu.push({ "颜值鉴定": "颜值" });
     menu.push({ "随机音乐": "随机音乐" });
     menu.push({ "摸鱼日记": "摸鱼" });
+	menu.push({ "舔狗日记": "舔狗日记" });
 	menu.push({ "成语接龙": "成语接龙" });
     menu.push({ "限免游戏": "限免游戏" });
     menu.push({ "京东比价": "发京东商品链接" });
@@ -27,7 +29,7 @@ function main() {
 	menu.push({ "QQ查手机号": "QQ查手机 35641144" });
 	menu.push({ "百度搜索": "百度 需要搜索的内容" });
 	menu.push({ "历史上的今天": "历史上的今天" });
-	menu.push({ "小爱同学": "小爱同学 我帅吗？ 或者 小爱 我帅吗？" });
+	menu.push({ "小爱同学": "小爱同学 我帅吗？" });
 	menu.push({ "赞助": "打赏" });
 	
     var menuStr = "";
