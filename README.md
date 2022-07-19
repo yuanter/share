@@ -3,11 +3,7 @@
 
 ## Tik Tok教程
 * 原理，使用Shadowrocket软件模拟国外手机卡并开启国际网络，跳过TikTok手机号检测实现刷抖音！
-
-
-
 ### 以下是文字教程
-
 ### 优缺点：
 
 * 1.适用于v21.1.0版本的美区TikTok
@@ -30,4 +26,9 @@
 
 ### 注意：每次在火箭做了改动操作，tiktok 都要完全关闭的情况下才会生效（tiktok不能在后台运行）
 
-![](https://raw.githubusercontent.com/yuanter/share/main/%E5%82%BB%E5%A6%9E%E6%8F%92%E4%BB%B6/%E5%A4%A9%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8F%92%E4%BB%B6/README.md)
+
+## 傻妞插件
+### 天行数据插件需要到[天行数据](https://www.tianapi.com/ "天行数据")申请key，申请后，机器人回复
+```
+set otto txdata 这里填你的天行数据key值
+```
