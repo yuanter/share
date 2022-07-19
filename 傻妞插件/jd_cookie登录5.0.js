@@ -1,25 +1,29 @@
 // [rule: 登录 ]
 // [rule: 登陆 ]
+// [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
-//作者：院长，MaiARK转jd_cookie版，下列为原作者信息
-//作者QQ1483081359 转载请保留版权  github仓库：zhacha222/sillyGirljs
-//4.0更新 适配QQ，微信，TG，微信公众号 全平台登录
+// [admin: false] 是否只允许管理员使用
+
 
 
 
 var addr = "http://101.35.190.155:1170"
 //这修改成自己jd_cookie的ip地址和端口
 //最后面不要带“/” ，不然会出错！
-//只要修改上面这里即可，其他不懂请不要改！！！
+var tip = "院长为您服务。"
+//这里是默认提示语，可修改替换文字
+
+//只要修改上面这里即可，其他不懂的请不要修改！！！
 
 
 var user = GetUserID()
+var userName = GetUsername()
 var num = ""
 
 function main() {
 
 
-    sendText("院长为您服务，请输入11位手机号：(输入“q”随时退出会话。)");
+    sendText(tip + "\n请输入11位手机号：(输入“q”随时退出会话。)");
     num = input(60000);
 
 
@@ -91,22 +95,22 @@ function LoginJD() {
 
         if (ImType() == "qq") {
             bucketSet('pinQQ', pin, user)
-            sendText("上车成功。")
+            sendText(userName+"上车成功。")
             return;
         }
 
         if (ImType() == "wx") {
             bucketSet('pinWX', pin, user)
-            sendText("上车成功。")
+            sendText(userName+"上车成功。")
             return;
         }
         if (ImType() == "wxmp") {
             bucketSet('pinWXMP', pin, user)
-            sendText("上车成功。")
+            sendText(userName+"上车成功。")
             return;
         } else if (ImType() == "tg") {
             bucketSet('pinTG', pin, user)
-            sendText("上车成功。")
+            sendText(userName+"上车成功。")
             return;
         }
     }else {
