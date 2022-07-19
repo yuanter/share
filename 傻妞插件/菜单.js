@@ -9,9 +9,10 @@ function main() {
     menu.push({ "骂人": "骂人" });
 	menu.push({ "热搜": "热搜" });
 	menu.push({ "小说": "小说 遮天" });
-    menu.push({ "壁纸": "小姐姐" });
+    menu.push({ "小姐姐": "小姐姐" });
 	menu.push({ "壁纸": "二次元" });
 	menu.push({ "菜谱": "菜谱 麻辣清江鱼" });
+	menu.push({ "买家秀": "买家秀" });
 	menu.push({ "猜成语": "猜成语" });
 	menu.push({ "抖音去水印": "发抖音链接" });
 	menu.push({ "颜值鉴定": "颜值" });
@@ -22,6 +23,7 @@ function main() {
     menu.push({ "京东比价": "发京东商品链接" });
     menu.push({ "抓绿钻ck": "抓绿钻ck" });
 	menu.push({ "QQ图片转链接": "传图" });
+	menu.push({ "文字转语音": "说 你需要转的文字" });
 	menu.push({ "QQ查手机号": "QQ查手机 35641144" });
 	menu.push({ "百度搜索": "百度 需要搜索的内容" });
 	menu.push({ "历史上的今天": "历史上的今天" });
