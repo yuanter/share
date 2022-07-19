@@ -8,7 +8,7 @@ function main() {
 	menu.push({ "夸我": "夸我 " });
     menu.push({ "骂人": "骂人" });
 	menu.push({ "热搜": "热搜" });
-	menu.push({ "小说": "小说 遮天" });
+	menu.push({ "小说": "小说" });
     menu.push({ "小姐姐": "小姐姐" });
 	menu.push({ "壁纸": "二次元" });
 	menu.push({ "菜谱": "菜谱 麻辣清江鱼" });
