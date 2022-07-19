@@ -30,5 +30,4 @@
 
 ### 注意：每次在火箭做了改动操作，tiktok 都要完全关闭的情况下才会生效（tiktok不能在后台运行）
 
-
-![]([pic/W02.jpg](https://raw.githubusercontent.com/yuanter/share/main/%E5%82%BB%E5%A6%9E%E6%8F%92%E4%BB%B6/%E5%A4%A9%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8F%92%E4%BB%B6/README.md))
+![](https://raw.githubusercontent.com/yuanter/share/main/%E5%82%BB%E5%A6%9E%E6%8F%92%E4%BB%B6/%E5%A4%A9%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8F%92%E4%BB%B6/README.md)
