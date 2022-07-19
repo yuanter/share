@@ -17,6 +17,7 @@ function main() {
 	menu.push({ "颜值鉴定": "颜值" });
     menu.push({ "随机音乐": "随机音乐" });
     menu.push({ "摸鱼日记": "摸鱼" });
+	menu.push({ "成语接龙": "成语接龙" });
     menu.push({ "限免游戏": "限免游戏" });
     menu.push({ "京东比价": "发京东商品链接" });
     menu.push({ "抓绿钻ck": "抓绿钻ck" });
