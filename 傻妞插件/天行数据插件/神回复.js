@@ -1,4 +1,5 @@
 // [rule: 神回复]
+// [rule: 神评]
 // [rule: raw ([\s\S]*)神回复([\s\S]*)]
 
 var key = get("txdata")
@@ -15,7 +16,7 @@ function main() {
 		dataType: "json",
     })
 	if(red.code == 200){
-		sendText(red.newslist[0].title + "\n" +red.newslist[0].content)
+		sendText(red.newslist[0].title + "\n\n神评：" +red.newslist[0].content)
 	}
 }
 
