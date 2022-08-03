@@ -10,7 +10,7 @@ var imTypeQQ =  "qq";
 var groupCodeWX = 18358776568;//此处修改成你的wx群组ID
 var imTypeWX =  "wx";
 //tg群组在此修改
-var groupCodeTG = -10457576672;//此处修改成你的tg群组ID
+var groupCodeTG = "-10457576672";//此处修改成你的tg群组ID
 var imTypeTG =  "tg";
 
 var data = request({ url: "https://api.2xb.cn/zaob", dataType: "json" }).imageUrl;
