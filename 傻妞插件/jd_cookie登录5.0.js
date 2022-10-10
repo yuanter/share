@@ -7,7 +7,7 @@
 
 
 
-var addr = "http://101.35.190.155:1170"
+var addr = "http://xxx.xxx.xxx.xxx:1170"
 //这修改成自己jd_cookie的ip地址和端口
 //最后面不要带“/” ，不然会出错！
 var tip = "院长为您服务。"
