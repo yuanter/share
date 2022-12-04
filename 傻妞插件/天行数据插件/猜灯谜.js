@@ -10,7 +10,7 @@ if(!key || key == "" || key == null){
 	//自行替换key
 	key = "e74140d49da96aa20021e8661bff3e83"
 }
-var api = "http://api.tianapi.com/caizimi/index";
+var api = "http://apis.tianapi.com/caizimi/index";
 
 
 function listen() {
@@ -20,7 +20,7 @@ function listen() {
 		dataType: "json",
     })
 	if(red.code == 200){
-		var json = red.newslist[0]
+		var json = red.result
 		return [json.riddle,json.type,json.disturb,json.answer,json.description]
 	}
 }
