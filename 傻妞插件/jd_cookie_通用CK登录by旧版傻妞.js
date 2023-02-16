@@ -51,12 +51,18 @@ function main() {
         url: addr + configUrl,
         method: "GET",
     })
-	
-    let config = JSON.parse(configData)
-    if(config.code != 0){
+    let config = {}
+    try {
+        config = JSON.parse(configData)
+        if(config.code == undefined || config.code != 0){
+            sendText("上车服务器错误，已退出")
+            return;
+        }
+    }catch (e) {
         sendText("上车服务器错误，已退出")
         return;
     }
+
    
     var list = Array.from(config.data.nameList);
     console.log("list.length",`${list.length}`)
