@@ -3,7 +3,7 @@
 // @create_at 2022-11-28 14:56:25
 // @version v1.0.0
 // @title jd_cookie_WSK_CK登录
-// @description 凹凸曼 wskey | ck 登录，配合jd_cookie接口，并生成wpusher关注二维码
+// @description 凹凸曼和旧版傻妞 wskey | ck 登录，配合jd_cookie接口，并生成wpusher关注二维码
 // [rule: raw ^(wsk登陆|wsk登录|ck登陆|ck登录|WSK登陆|WSK登录|CK登陆|CK登录)$]
 // [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
