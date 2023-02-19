@@ -4,7 +4,7 @@
 // @version v1.0.0
 // @title jd_cookie_通用CK登录
 // @description jd_cookie 通用CK登录
-// [rule: raw ^(通用CK登陆|通用CK登录|通用CK提交)$]
+// [rule: raw ^(通用CK登陆|通用CK登录|通用CK提交|通用ck登陆|通用ck登录|通用ck提交)$]
 // [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
