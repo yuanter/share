@@ -144,7 +144,7 @@ function main() {
     })
     console.log(ckPutResult)
     sendText(ckPutResult.msg) 
-	sendText("本次会话会话结束")	
+	sendText("本次会话结束。")
 
 
     return;
