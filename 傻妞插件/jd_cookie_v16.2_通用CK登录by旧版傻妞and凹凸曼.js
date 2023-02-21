@@ -9,12 +9,13 @@
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
 
+//当前版本适合配合jd_cookie v16.2以上版本使用
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
- 
- 
-// 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令  
+
+
+// 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令
 // set otto jd_cookieKey 此处填容器的对应的key
-// 设置短信地址，傻妞口令用法，对傻妞回复命令  
+// 设置短信地址，傻妞口令用法，对傻妞回复命令
 // set otto jd_cookieAddr 这段文字修改为你的短信登录地址http://xxx.xxx.xxx.xxx:1170后面不带斜杆
 // 设置自定义机器人回复，如“傻妞为您服务”
 // set otto jd_cookieTip 这段文字修改为你的短信登录的提示文字，如傻妞为您服务
@@ -63,23 +64,23 @@ function main() {
         return;
     }
 
-   
+
     //var list = Array.from(config.data.nameList);
-	var list = config.data.nameList;
+    var list = config.data.nameList;
     console.log("list.length",`${list.length}`)
     var replyStr = "请回复需要提交的通用CK类型(输入“q”随时退出会话。)\n";
     var numList = [];
-	var j = 0;
+    var j = 0;
     for(var i = 0; i < `${list.length}` ;i++){
-		if(list[i].generalCKCount>0){
-			j++
-			replyStr += (j)+"、"+list[i].generalCKName+"\n";
-			//存数组
-			numList.push(list[i]);
-		}
+        if(list[i].generalCKCount>0){
+            j++
+            replyStr += (j)+"、"+list[i].generalCKName+"\n";
+            //存数组
+            numList.push(list[i]);
+        }
     }
 
-    console.log("numList",numList)
+    //console.log("numList",numList)
     sendText(replyStr);
 
     var num = input(60000).replace(/\s+/g,"");
@@ -87,18 +88,18 @@ function main() {
         sendText("已退出")
         return;
     }
-	
-	//匹配输入的数字是否正确
-	var r = /^([1-9]\d*)$/
+
+    //匹配输入的数字是否正确
+    var r = /^([1-9]\d*)$/
     if(!r.test(num)){
         sendText("选择不正确，已退出会话");
         return;
     }
 
-	if(num>numList.length){
-		sendText("选择不正确，已退出会话。");
+    if(num>numList.length){
+        sendText("选择不正确，已退出会话。");
         return;
-	}
+    }
 
     sendText("请提交CK(输入“q”随时退出会话。)");
     var ck = input(60000).replace(/\s+/g,"");
@@ -109,22 +110,22 @@ function main() {
 
     sendText("请输入备注（必填，简单的备注会被覆盖,输入“q”随时退出会话。）：");
     var remarks = input(60000);
-	var remarks_r = /^\d{0,2}$/
-	
+    var remarks_r = /^\d{0,2}$/
+
     while(remarks == "" || remarks ==null || !remarks){
         sendText("当前未输入备注，请再次输入备注")
         remarks = input(60000);
     }
-	
-	while(remarks_r.test(remarks)){
-		sendText("当前输入备注过于简单，容易被他人覆盖，请再次输入备注")
-        remarks = input(60000);
-        
-	}
 
-	if(remarks == "q" || remarks == "Q"){
-            sendText("已退出")
-			return;
+    while(remarks_r.test(remarks)){
+        sendText("当前输入备注过于简单，容易被他人覆盖，请再次输入备注")
+        remarks = input(60000);
+
+    }
+
+    if(remarks == "q" || remarks == "Q"){
+        sendText("已退出")
+        return;
     }
     sendText("正在提交，请稍后......")
     // 提交CK到jd_cookie
@@ -143,8 +144,8 @@ function main() {
         body: ckPutBody
     })
     console.log(ckPutResult)
-    sendText(ckPutResult.msg) 
-	sendText("本次会话结束。")
+    sendText(ckPutResult.msg)
+    sendText("本次会话结束。")
 
 
     return;

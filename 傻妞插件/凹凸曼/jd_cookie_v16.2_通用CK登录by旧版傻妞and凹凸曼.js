@@ -9,6 +9,7 @@
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
 
+//当前版本适合配合jd_cookie v16.2以上版本使用
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
  
  
@@ -79,7 +80,7 @@ function main() {
 		}
     }
 
-    console.log("numList",numList)
+    //console.log("numList",numList)
     sendText(replyStr);
 
     var num = input(60000).replace(/\s+/g,"");
