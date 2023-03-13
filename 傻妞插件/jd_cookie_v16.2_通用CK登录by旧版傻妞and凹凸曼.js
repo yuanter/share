@@ -127,10 +127,25 @@ function main() {
         sendText("已退出")
         return;
     }
-    sendText("正在提交，请稍后......")
+
+    //校验卡密
+    var token = "";
+    if(numList[num-1].isChoice != undefined){
+        if(numList[num-1].isChoice || numList[num-1].isChoice == "true"){
+            sendText("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
+            token = input(60000).replace(/\s+/g,"");
+        }
+    }
+    if(token == "q" || token == "Q"){
+        sendText("已退出")
+        return;
+    }
+
     // 提交CK到jd_cookie
+    sendText("正在提交，请稍后......")
     var ckPutUrl = "/ty/putCK"
     var ckPutBody = {
+        token:token,
         name: numList[num-1].generalCK,
         key: key,
         remarks: remarks,

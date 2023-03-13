@@ -12,8 +12,8 @@
 
 
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
- 
- 
+
+
 // 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令  
 // set otto jd_cookieKey 此处填容器的对应的key
 // 设置短信地址，傻妞口令用法，对傻妞回复命令  
@@ -47,6 +47,33 @@ console.log(addr)
 
 function main() {
 
+    //获取配置列表，如果需要卡密则弹窗
+    var configUrl = "/jd/config"
+    var configData = request({
+        url: addr + configUrl,
+        method: "GET",
+    })
+    let config = {}
+    try {
+        config = JSON.parse(configData)
+        if(config.code == undefined || config.code != 0){
+            sendText("上车服务器错误，已退出")
+            return;
+        }
+    }catch (e) {
+        sendText("上车服务器错误，已退出")
+        return;
+    }
+    //手动提交京东CK是否需要卡密
+    var token = "";
+    var currencyToken = config.data.currencyToken;
+    if(currencyToken != undefined){
+        if(currencyToken || currencyToken == "true"){
+            sendText("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
+            token = input(60000).replace(/\s+/g,"");
+        }
+    }
+
     sendText("请输入CK或WSK(输入“q”随时退出会话。)");
     var ck = input(60000).replace(/\s+/g,"");
 
@@ -59,17 +86,17 @@ function main() {
     const wskrule = /pin=([^;]+);.*?wskey=[^;]+;$/;
     const wskrule1 = /wskey=[^;]+;.*?pin=([^;]+);$/;
     let pinMatch = wskrule.exec(ck) || wskrule1.exec(ck)
-	const isWSK = !!pinMatch
-	if (!isWSK) {
-		// 非WSK，检测是不是CK
-		const ckrule = /pt_pin=([^;]+);.*?pt_key=[^;]+;$/;
-		const ckrule1 = /pt_key=([^;]+);.*?pt_pin=([^;]+);$/;
-		pinMatch = ckrule.exec(ck) || ckrule1.exec(ck)
-		if (!pinMatch) {
-			sendText("校验失败，格式不对！会话结束~")
-			return
-		}
-	}
+    const isWSK = !!pinMatch
+    if (!isWSK) {
+        // 非WSK，检测是不是CK
+        const ckrule = /pt_pin=([^;]+);.*?pt_key=[^;]+;$/;
+        const ckrule1 = /pt_key=([^;]+);.*?pt_pin=([^;]+);$/;
+        pinMatch = ckrule.exec(ck) || ckrule1.exec(ck)
+        if (!pinMatch) {
+            sendText("校验失败，格式不对！会话结束~")
+            return
+        }
+    }
     const jj = pinMatch[1]
     const pin = encodeURI(jj)
     console.log(isWSK, pin);
@@ -78,14 +105,14 @@ function main() {
     const remarks = input(60000);
 
     sendText("正在提交，请稍后......")
-    const ckPutResult = isWSK ? putWskey(ck, remarks) : putCK(ck, remarks)
+    const ckPutResult = isWSK ? putWskey(ck, remarks,token) : putCK(ck, remarks,token)
     if (ckPutResult.code != "0" || ckPutResult.code != 0 || ckPutResult.data.hasSubscribed) {
         sendText(userName+"上车成功，已关注公众号，结束会话~")
         return;
     }
     sendText("正在生成关注二维码，请耐心等待...")
 
-	const cookieType = isWSK ? "wskey" : "cookie"
+    const cookieType = isWSK ? "wskey" : "cookie"
     // 生成wxpusher qrcode
     const qrcodeUrl = "/api/qrcode?id="+ckPutResult.data.id+"&ptPin="+pin+"&key="+key+"&cookieType="+cookieType
     console.log(qrcodeUrl)
@@ -99,46 +126,48 @@ function main() {
         return;
     }
     sendImage(qrcodeResult.data.url)
-    sendText("关注WxPusher公众号，每天获取资产详情，首次关注需要二次扫码！！！\n\n 会话结束~")    
+    sendText("关注WxPusher公众号，每天获取资产详情，首次关注需要二次扫码！！！\n\n 会话结束~")
 }
 
-function putWskey(ck, remarks) {
-	const ckPutUrl = "/jd/putWskey"
+function putWskey(ck, remarks,token) {
+    const ckPutUrl = "/jd/putWskey"
     const ckPutBody = {
+        token: token,
         wskey: ck,
         key: key,
         remarks: remarks
     }
     console.log(ckPutBody)
-    
-	const ckPutResult = request({
+
+    const ckPutResult = request({
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
         body: ckPutBody
     })
-	console.log(ckPutResult)
-	
-	return ckPutResult
+    console.log(ckPutResult)
+
+    return ckPutResult
 }
 
-function putCK(ck, remarks) {
-	const ckPutUrl = "/jd/putCK"
+function putCK(ck, remarks,token) {
+    const ckPutUrl = "/jd/putCK"
     const ckPutBody = {
+        token: token,
         cookie: ck,
         key: key,
         remarks: remarks
     }
     console.log(ckPutBody)
-    
-	const ckPutResult = request({
+
+    const ckPutResult = request({
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
         body: ckPutBody
     })
-	console.log(ckPutResult)
-	
-	return ckPutResult
+    console.log(ckPutResult)
+
+    return ckPutResult
 }
 main()
