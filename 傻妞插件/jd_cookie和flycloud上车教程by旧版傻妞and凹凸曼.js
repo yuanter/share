@@ -4,7 +4,7 @@
 // @version v1.0.0
 // @title jd_cookie|flycloud上车教程
 // @description jd_cookie或者flycloud(飞云)上车教程文档
-// [rule: raw ^(上车教程|通用教程|京东教程|使用教程|jd_cookie教程|flycloud教程)$]
+// [rule: raw ^(文档教程|上车教程|通用教程|京东教程|使用教程|jd_cookie教程|flycloud教程)$]
 // [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
