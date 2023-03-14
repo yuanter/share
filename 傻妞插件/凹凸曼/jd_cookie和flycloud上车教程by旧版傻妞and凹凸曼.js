@@ -43,10 +43,10 @@ function main() {
     var tip = config.data.tip;
 
     if(notice != ""){
-        sendText(notice)
+        sendText("京东CK上车教程\n"+notice)
     }
     if(tip != ""){
-        sendText(tip)
+        sendText("通用CK上车教程\n"+tip)
     }
     return;
 }
