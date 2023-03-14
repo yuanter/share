@@ -4,14 +4,14 @@
 // @version v1.0.0
 // @title jd_cookie|flycloud上车教程
 // @description jd_cookie或者flycloud(飞云)上车教程文档
-// [rule: raw ^(教程|上车教程|通用教程|京东教程|使用教程|jd_cookie教程|flycloud教程)$]
+// [rule: raw ^(上车教程|通用教程|京东教程|使用教程|jd_cookie教程|flycloud教程)$]
 // [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
 
 
 // 设置jd_cookie或者flycloud地址，傻妞口令用法，对傻妞回复命令
-// set otto jd_cookieAddr http://xxx.xxx.xxx.xxx:1170      地址后面不带斜杆
+// set otto jd_cookieAddr http://xxx.xxx.xxx.xxx:1170   记得地址后面不带斜杆
 
 
 var addr = get("jd_cookieAddr")
