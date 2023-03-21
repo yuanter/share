@@ -44,11 +44,11 @@ function main() {
 
     if(notice != ""){
         //去除那些标签
-        notice = notice.replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
+        notice = notice.replace(/<img.*? src="/g,"").replace(/"[ ]+class.*?<\/img.*?>/g,"").replace(/^"[>| >].*?<\/img.*?>/g,"").replace(/<a.*? href="/g,"").replace(/^">.*?<\/a.*?>/g,"").replace(/&nbsp;/g," ").replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
         sendText("京东CK上车教程\n"+notice)
     }
     if(tip != ""){
-        tip = tip.replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
+        tip = tip.replace(/<img.*? src="/g,"").replace(/"[ ]+class.*?<\/img.*?>/g,"").replace(/^"[>| >].*?<\/img.*?>/g,"").replace(/<a.*? href="/g,"").replace(/^">.*?<\/a.*?>/g,"").replace(/&nbsp;/g," ").replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
         sendText("通用CK上车教程\n"+tip)
     }
     return;
