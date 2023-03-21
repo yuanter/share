@@ -45,6 +45,7 @@ function main() {
     if(notice != ""){
         sendText("京东CK上车教程\n"+notice)
     }
+    sleep(2000)
     if(tip != ""){
         sendText("通用CK上车教程\n"+tip)
     }
