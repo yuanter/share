@@ -43,10 +43,12 @@ function main() {
     var tip = config.data.tip;
 
     if(notice != ""){
+        //去除那些标签
+        notice = notice.replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
         sendText("京东CK上车教程\n"+notice)
     }
-    sleep(2000)
     if(tip != ""){
+        tip = tip.replace(/<br><br>+/g,"\n").replace(/<br>+/g,"\n").replace(/<br\/>+/g,"\n").replace(/<.*?>/g,"")
         sendText("通用CK上车教程\n"+tip)
     }
     return;
