@@ -65,7 +65,11 @@ function main() {
 
    
     var list = Array.from(config.data.nameList);
-    console.log("list.length",`${list.length}`)
+    console.log("list.length",`${list.length}`);
+    if(`${list.length}`<1){
+        sendText("当前车次没有可提交的通用CK，请联系车主，已退出")
+        return;
+    }
     var replyStr = "请回复需要提交的通用CK类型(输入“q”随时退出会话。)\n";
     var numList = [];
     for(var i = 0; i < `${list.length}`;i++){
