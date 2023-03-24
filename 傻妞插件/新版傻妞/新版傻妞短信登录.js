@@ -1,39 +1,40 @@
 /**
- * 作者
+ * 作者 by yuanter|院长
+ * @origin yuanter
  * @author https://t.me/yuanter_res
  * @create_at 2022-11-03 19:40:26
  * @version v1.0.0
  * @title jd_cookie短信登录by新版傻妞
  * 脚本描述。
- * @description jd_cookie短信登录by新版傻妞
- * @rule raw ^(登陆|登录)$
+ * @description jd_cookie短信登录by新版傻妞，配合jd_cookie接口
+ * @rule raw ^(登陆|登录|短信登录)$
  * 脚本优先级，大的优先处理消息。
  * @priority 99999999999999999999999999999999999999999999999
  * 脚本支持的平台，默认支持所有。
  * @platform qq wx tg pgm web
  * 脚本设置为公开，订阅者可以获取该脚本。
- * @public false
+ * @public true
  * 启用脚本
  * @disable false
- * 
- * 
+ *
+ *
  */
 
- 
- 
- 
- 
- 
+
+
+
+
+
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
- 
- 
-// 设置短信地址，傻妞口令用法，对傻妞回复命令  
+
+
+// 设置短信地址，傻妞口令用法，对傻妞回复命令
 // set yuanter jd_cookieAddr 这段文字修改为你的短信登录地址http://xxx.xxx.xxx.xxx:1170后面不带斜杆
 // 设置自定义机器人回复，如“傻妞为您服务”
 // set yuanter jd_cookieTip 这段文字修改为你的短信登录的提示文字，如傻妞为您服务
- 
 
- 
+
+
 
 //---------------------------------------------若使用上面的口令后，请不要修改下面圈起来注释部分，其他不懂的请不要修改！！！-------------------------------------
 
@@ -41,13 +42,13 @@
 const yuanter = new Bucket("yuanter")
 var addr = yuanter.get("jd_cookieAddr")
 if(!addr || addr == "" || addr == null){
-	//自行替换,如果未设置信息，请手动在这修改成自己jd_cookie的ip地址和端口，最后面不要带“/” ，不然会出错！
-	addr = "http://xxx.xxx.xxx.xxx:1170"
+    //自行替换,如果未设置信息，请手动在这修改成自己jd_cookie的ip地址和端口，最后面不要带“/” ，不然会出错！
+    addr = "http://xxx.xxx.xxx.xxx:1170"
 }
 var tip = yuanter.get("jd_cookieTip")
 if(!tip || tip == "" || tip == null){
-	//自行替换,如果未设置信息，请手动在这修改替换文字
-	tip = "院长为您服务。"
+    //自行替换,如果未设置信息，请手动在这修改替换文字
+    tip = "院长为您服务。"
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,8 +63,36 @@ const s = sender
 const user = s.getUserId()
 const userName = s.getUserName()
 var num = ""
+var token = "";
 
 function main() {
+
+    //获取配置
+    var configUrl = "/jd/config"
+    var configData = request({
+        url: addr + configUrl,
+        method: "GET",
+    }).body
+    let config = {};
+    try {
+        config = JSON.parse(configData)
+        if(config.code != 0){
+            s.reply("上车服务器错误，已退出")
+            return;
+        }
+    }catch (e) {
+        s.reply("上车服务器错误，已退出");
+        return;
+    }
+    //短信是否需要token
+
+    var ckToken = config.data.ckToken;
+    if(ckToken != undefined){
+        if(ckToken || ckToken == "true"){
+            s.reply("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
+            token = s.listen(60000).getContent().replace(/\s+/g,"");
+        }
+    }
 
     s.reply(tip + "\n请输入11位手机号：(输入“q”随时退出会话。)")
     num = s.listen(60000).getContent();
@@ -100,6 +129,7 @@ function main() {
 }
 
 function LoginJD() {
+
     s.reply("获取验证码成功！请输入短信验证码：")
     var code = s.listen(60000).getContent();
     if (!code || code == "q" || code == "Q") {
@@ -114,7 +144,7 @@ function LoginJD() {
     //     allowredirects: false, //不禁止重定向
     // })
     var result = request({
-        url: addr + "/jd/login?mobile=" + num + "&code=" + code,
+        url: addr + "/jd/login?mobile=" + num + "&code=" + code + "&token=" + token,
         "dataType": "json",
         method:"get",
         allowredirects: true, //禁止重定向
@@ -134,7 +164,7 @@ function LoginJD() {
         var rule = /[^;]+;[ ]pt_pin=(.*);$/
         var rule1 = /[^;]+;pt_pin=(.*);$/
         var ck = result.data.cookie
-		
+
         var ckpin = rule.exec(ck) || rule1.exec(ck)
         //var pin = ckpin[1]
         var jj = ckpin[1]
@@ -152,17 +182,17 @@ function LoginJD() {
 
         // yuanter.set(s.getPlatform(), pin, user)
         // sillyGirl.push({
-    	// 		platform: s.getPlatform(),
-    	// 		userId: s.getUserId(),
-    	// 		content: userName+"上车成功。",
-		// 	})
+        // 		platform: s.getPlatform(),
+        // 		userId: s.getUserId(),
+        // 		content: userName+"上车成功。",
+        // 	})
         // return;
         let bind=new Bucket("pin"+s.getPlatform().toUpperCase())
-		bind.set(pin,s.getUserId())
+        bind.set(pin,s.getUserId())
         s.reply(userName+"上车成功。")
         return;
 
-        
+
 
         // if (s.getPlatform() == "qq") {
         //     //bucketSet('pinQQ', pin, user)
