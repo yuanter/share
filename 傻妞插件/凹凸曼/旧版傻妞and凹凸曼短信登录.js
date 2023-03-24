@@ -25,12 +25,12 @@
 var addr = get("yuanter_jd_cookieAddr")
 var tip = get("yuanter_jd_cookieTip")
 if(!addr || addr == "" || addr == null){
-	//自行替换,如果未设置信息，请手动在这修改成自己jd_cookie的ip地址和端口，最后面不要带“/” ，不然会出错！
-	addr = "http://xxx.xxx.xxx.xxx:1170"
+    //自行替换,如果未设置信息，请手动在这修改成自己jd_cookie的ip地址和端口，最后面不要带“/” ，不然会出错！
+    addr = "http://xxx.xxx.xxx.xxx:1170"
 }
 if(!tip || tip == "" || tip == null){
-	//自行替换,如果未设置信息，请手动在这修改替换文字
-	tip = "院长为您服务。"
+    //自行替换,如果未设置信息，请手动在这修改替换文字
+    tip = "院长为您服务。"
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,6 +77,34 @@ function main() {
 }
 
 function LoginJD() {
+    //获取配置
+    var configUrl = "/jd/config";
+    var configData = request({
+        url: addr + configUrl,
+        method: "GET",
+    });
+    let config = {};
+    try {
+        config = JSON.parse(configData)
+        if(config.code == undefined || config.code != 0){
+            sendText("上车服务器错误，已退出");
+            return;
+        }
+    }catch (e) {
+        sendText("上车服务器错误，已退出");
+        return;
+    }
+
+    //手动提交京东CK是否需要卡密
+    var token = "";
+    var ckToken = config.data.ckToken;
+    if(ckToken != undefined){
+        if(ckToken || ckToken == "true"){
+            sendText("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
+            token = input(60000).replace(/\s+/g,"");
+        }
+    }
+
     sendText("获取验证码成功！请输入短信验证码：")
     code = input(60000);
     if (!code || code == "q" || code == "Q") {
@@ -84,8 +112,10 @@ function LoginJD() {
         return;
     }
 
+
+
     var result = request({
-        url: addr + "/jd/login?mobile=" + num + "&code=" + code,
+        url: addr + "/jd/login?mobile=" + num + "&code=" + code+"&token=" + token,
         "dataType": "json"
     })
 
@@ -101,9 +131,9 @@ function LoginJD() {
 
     if (result.data.cookie != undefined) {
         var rule = /[^;]+;[ ]pt_pin=(.*);$/
-		var rule1 = /[^;]+;pt_pin=(.*);$/
+        var rule1 = /[^;]+;pt_pin=(.*);$/
         var ck = result.data.cookie
-		
+
         var ckpin = rule.exec(ck) || rule1.exec(ck)
         //var pin = ckpin[1]
         var jj = ckpin[1]

@@ -45,13 +45,13 @@ const userName = GetUsername()
 console.log(addr)
 
 function main() {
-    //获取通用CK的列表，不在列表名单禁止提交
+    //获取配置
     var configUrl = "/jd/config"
     var configData = request({
         url: addr + configUrl,
         method: "GET",
     })
-    let config = {}
+    let config = {};
     try {
         config = JSON.parse(configData)
         if(config.code == undefined || config.code != 0){
