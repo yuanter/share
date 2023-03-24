@@ -116,15 +116,19 @@ function main() {
     var remarks = input(60000);
     var remarks_r = /^\d{0,2}$/
 
+    var count = 0;//2次后就退出
     while(remarks == "" || remarks ==null || !remarks){
         sendText("当前未输入备注，请再次输入备注")
         remarks = input(60000);
+        count++;
+        if (count == 2){
+            break;
+        }
     }
 
     while(remarks_r.test(remarks)){
         sendText("当前输入备注过于简单，容易被他人覆盖，请再次输入备注")
         remarks = input(60000);
-
     }
 
     if(remarks == "q" || remarks == "Q"){
