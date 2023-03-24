@@ -40,10 +40,36 @@ if(!tip || tip == "" || tip == null){
 
 var user = GetUserID()
 var userName = GetUsername()
-var num = ""
+var num = "";
+var token = "";
 
 function main() {
+    //获取配置
+    var configUrl = "/jd/config";
+    var configData = request({
+        url: addr + configUrl,
+        method: "GET",
+    });
+    let config = {};
+    try {
+        config = JSON.parse(configData)
+        if(config.code == undefined || config.code != 0){
+            sendText("上车服务器错误，已退出");
+            return;
+        }
+    }catch (e) {
+        sendText("上车服务器错误，已退出");
+        return;
+    }
 
+    //获取京东CK是否需要卡密
+    var ckToken = config.data.ckToken;
+    if(ckToken != undefined){
+        if(ckToken || ckToken == "true"){
+            sendText("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
+            token = input(60000).replace(/\s+/g,"");
+        }
+    }
 
     sendText(tip + "\n请输入11位手机号：(输入“q”随时退出会话。)");
     num = input(60000);
@@ -77,34 +103,6 @@ function main() {
 }
 
 function LoginJD() {
-    //获取配置
-    var configUrl = "/jd/config";
-    var configData = request({
-        url: addr + configUrl,
-        method: "GET",
-    });
-    let config = {};
-    try {
-        config = JSON.parse(configData)
-        if(config.code == undefined || config.code != 0){
-            sendText("上车服务器错误，已退出");
-            return;
-        }
-    }catch (e) {
-        sendText("上车服务器错误，已退出");
-        return;
-    }
-
-    //手动提交京东CK是否需要卡密
-    var token = "";
-    var ckToken = config.data.ckToken;
-    if(ckToken != undefined){
-        if(ckToken || ckToken == "true"){
-            sendText("当前已启用卡密功能。请输入卡密,输入“q”随时退出会话")
-            token = input(60000).replace(/\s+/g,"");
-        }
-    }
-
     sendText("获取验证码成功！请输入短信验证码：")
     code = input(60000);
     if (!code || code == "q" || code == "Q") {
@@ -115,7 +113,7 @@ function LoginJD() {
 
 
     var result = request({
-        url: addr + "/jd/login?mobile=" + num + "&code=" + code+"&token=" + token,
+        url: addr + "/jd/login?mobile=" + num + "&code=" + code + "&token=" + token,
         "dataType": "json"
     })
 
@@ -173,8 +171,3 @@ function LoginJD() {
 
 }
 main()
-
-
-
-
-
