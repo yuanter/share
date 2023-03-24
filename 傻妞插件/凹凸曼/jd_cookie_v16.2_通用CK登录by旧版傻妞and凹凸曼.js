@@ -126,6 +126,11 @@ function main() {
         }
     }
 
+    if (count == 2){
+        sendText("当前用户未输入备注，已退出")
+        return;
+    }
+
     while(remarks_r.test(remarks)){
         sendText("当前输入备注过于简单，容易被他人覆盖，请再次输入备注")
         remarks = input(60000);
