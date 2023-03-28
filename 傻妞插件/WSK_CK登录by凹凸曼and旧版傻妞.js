@@ -52,6 +52,7 @@ function main() {
     var configData = request({
         url: addr + configUrl,
         method: "GET",
+        timeout:60000
     })
     let config = {}
     try {
@@ -119,7 +120,8 @@ function main() {
     const qrcodeResult = request({
         url: addr + qrcodeUrl,
         method: "GET",
-        dataType: "json"
+        dataType: "json",
+        timeout:60000
     })
     console.log(qrcodeResult)
     if (qrcodeResult.code != "0" || qrcodeResult.code != 0) {
@@ -143,7 +145,8 @@ function putWskey(ck, remarks,token) {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
 	console.log(ckPutResult)
 	
@@ -164,7 +167,8 @@ function putCK(ck, remarks,token) {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
 	console.log(ckPutResult)
 	

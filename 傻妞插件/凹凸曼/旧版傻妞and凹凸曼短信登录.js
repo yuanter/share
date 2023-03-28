@@ -1,24 +1,14 @@
-// [rule: 登录 ]
-// [rule: 登陆 ]
+// [rule: raw ^(登陆|登录|短信登陆|短信登录|CK提交|ck登陆|ck登录|ck提交)$]
 // [priority:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999]
 // [disable: false] 是否禁用
 // [admin: false] 是否只允许管理员使用
 
-
-
-
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
-
 
 // 设置短信地址，傻妞口令用法，对傻妞回复命令
 // set otto yuanter_jd_cookieAddr 这段文字修改为你的短信登录地址http://xxx.xxx.xxx.xxx:1170后面不带斜杆
 // 设置自定义机器人回复，如“傻妞为您服务”
 // set otto yuanter_jd_cookieTip 这段文字修改为你的短信登录的提示文字，如傻妞为您服务
-
-
-
-
-
 
 //---------------------------------------------若使用上面的口令后，请不要修改下面圈起来注释部分，其他不懂的请不要修改！！！-------------------------------------
 
@@ -35,15 +25,13 @@ if(!tip || tip == "" || tip == null){
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
 var user = GetUserID()
 var userName = GetUsername()
 var num = "";
 var token = "";
 
 function main() {
+
     //获取配置
     var configUrl = "/jd/config";
     var configData = request({
@@ -83,10 +71,10 @@ function main() {
         sendText("正在获取登录验证码,请耐心等待...");
     }
 
-
     var result = request({
-        url: addr +"/jd/smsCode?mobile=" + num,
-        "dataType": "json"
+        url: addr + "/jd/smsCode?mobile=" + num,
+        "dataType": "json",
+        timeout:60000
     })
 
     if (!result) {
@@ -110,11 +98,10 @@ function LoginJD() {
         return;
     }
 
-
-
     var result = request({
         url: addr + "/jd/login?mobile=" + num + "&code=" + code + "&token=" + token,
-        "dataType": "json"
+        "dataType": "json",
+        timeout:60000
     })
 
     if (!result) {
@@ -138,9 +125,18 @@ function LoginJD() {
         var pin = encodeURI(jj)
 
         try {
-            sillyGirl.session(ck)
+            autMan.session(ck)
         } catch (e) {
-            sillyGirl.Session(ck)
+            try {
+                autMan.Session(ck)
+            }catch (e) {
+                try {
+                    sillyGirl.session(ck)
+                } catch (e) {
+                    sillyGirl.Session(ck)
+                }
+            }
+
         }
 
 

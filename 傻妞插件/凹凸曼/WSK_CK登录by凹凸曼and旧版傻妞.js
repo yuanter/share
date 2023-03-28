@@ -14,9 +14,9 @@
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
 
 
-// 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令  
+// 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令
 // set otto jd_cookieKey 此处填容器的对应的key
-// 设置短信地址，傻妞口令用法，对傻妞回复命令  
+// 设置短信地址，傻妞口令用法，对傻妞回复命令
 // set otto jd_cookieAddr 这段文字修改为你的短信登录地址http://xxx.xxx.xxx.xxx:1170后面不带斜杆
 // 设置自定义机器人回复，如“傻妞为您服务”
 // set otto jd_cookieTip 这段文字修改为你的短信登录的提示文字，如傻妞为您服务
@@ -52,6 +52,7 @@ function main() {
     var configData = request({
         url: addr + configUrl,
         method: "GET",
+        timeout:60000
     })
     let config = {}
     try {
@@ -119,7 +120,8 @@ function main() {
     const qrcodeResult = request({
         url: addr + qrcodeUrl,
         method: "GET",
-        dataType: "json"
+        dataType: "json",
+        timeout:60000
     })
     console.log(qrcodeResult)
     if (qrcodeResult.code != "0" || qrcodeResult.code != 0) {
@@ -143,7 +145,8 @@ function putWskey(ck, remarks,token) {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
     console.log(ckPutResult)
 
@@ -164,7 +167,8 @@ function putCK(ck, remarks,token) {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
     console.log(ckPutResult)
 

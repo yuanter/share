@@ -50,6 +50,7 @@ function main() {
     var configData = request({
         url: addr + configUrl,
         method: "GET",
+        timeout:60000
     })
     let config = {};
     try {
@@ -131,7 +132,8 @@ function main() {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
     console.log(ckPutResult)
     sendText(ckPutResult.msg) 

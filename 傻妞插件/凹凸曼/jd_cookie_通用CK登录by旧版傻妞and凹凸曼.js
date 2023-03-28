@@ -10,8 +10,8 @@
 // [admin: false] 是否只允许管理员使用
 
 // 使用口令和修改脚本内容，二选一的方式（选择口令，就不用修改脚本，若改了脚本就不用回复口令）
- 
- 
+
+
 // 设置使用对应的容器，在网页处可看顺序，默认使用第一个容器，从0开始顺序往下数。傻妞口令用法，对傻妞回复命令  
 // set otto jd_cookieKey 此处填容器的对应的key
 // 设置短信地址，傻妞口令用法，对傻妞回复命令  
@@ -45,13 +45,14 @@ const userName = GetUsername()
 console.log(addr)
 
 function main() {
-    //获取通用CK的列表，不在列表名单禁止提交
+    //获取配置
     var configUrl = "/jd/config"
     var configData = request({
         url: addr + configUrl,
         method: "GET",
+        timeout:60000
     })
-    let config = {}
+    let config = {};
     try {
         config = JSON.parse(configData)
         if(config.code == undefined || config.code != 0){
@@ -63,7 +64,7 @@ function main() {
         return;
     }
 
-   
+
     var list = Array.from(config.data.nameList);
     console.log("list.length",`${list.length}`);
     if(`${list.length}`<1){
@@ -93,8 +94,8 @@ function main() {
     }
 
     let choosevalue = numList.find(item => {
-            return item == num;
-        });
+        return item == num;
+    });
     console.log("choosevalue",choosevalue)
 
 
@@ -131,11 +132,12 @@ function main() {
         url: addr + ckPutUrl,
         method: "POST",
         dataType: "json",
-        body: ckPutBody
+        body: ckPutBody,
+        timeout:60000
     })
     console.log(ckPutResult)
-    sendText(ckPutResult.msg) 
-	sendText("本次会话会话结束")	
+    sendText(ckPutResult.msg)
+    sendText("本次会话会话结束")
 
 
     return;
