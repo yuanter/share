@@ -37,6 +37,7 @@ function main() {
     var configData = request({
         url: addr + configUrl,
         method: "GET",
+        timeout:60000
     });
     let config = {};
     try {
@@ -73,7 +74,7 @@ function main() {
 
     var result = request({
         url: addr + "/jd/smsCode?mobile=" + num,
-        "dataType": "json",
+        dataType: "json",
         timeout:60000
     })
 
