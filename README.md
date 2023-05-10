@@ -19,6 +19,8 @@
 * 8.使用爱思助手安装tiktok21.1.0到手机上
 * 9.复制节点 –> 打开Shadowrocket –> 粘贴 –> 添加成功 -> 返回app首页查看节点
 * 10.打开Shadowrocket –> 首页 –> 全局路由选择配置，然后开启连接 –> 输入锁屏密码 -> 开启成功 -> 等待5-10秒在去打开tiktok 
+* ![教程](https://image.kejiwanjia.com/wp-content/uploads/2021/06/tiktok-3.gif)
+* 
 
 ### 注意：每次在火箭做了改动操作，tiktok 都要完全关闭的情况下才会生效（tiktok不能在后台运行）  
 # 
